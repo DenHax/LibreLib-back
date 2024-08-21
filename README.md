@@ -17,8 +17,8 @@ cd LibreLib-back
 go mod tidy
 
 # Run server
-go run main.go
+go run ./cmd/librelib/main.go
 
 # Build app
-go build main.go 
+go build ./cmd/librelib/main.go 
 ```
