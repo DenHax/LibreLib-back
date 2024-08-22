@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ../build/package 
+    command: ../build/package/liblrelib
+    depends_on:
+      - psql
+    ports:
+      - 8080:8080
+
+  psql:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./.database/postgres/data:/var/lib/postgresql/data
+    ports:
+      - 5436:5432
