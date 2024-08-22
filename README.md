@@ -11,7 +11,7 @@ Golang 1.21.9
 # Install golang
 apt install go
 
-# INnsatll dependencies
+# Install dependencies
 git clone https://github.com/DenHax/LibreLib-back
 cd LibreLib-back
 go mod tidy
