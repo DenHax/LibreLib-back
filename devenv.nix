@@ -37,10 +37,12 @@
     echo hello from $GREET
   '';
 
-  enterShell = ''
-    Backend for LibreLib
-    go version
-  '';
+  enterShell = # bash
+    ''
+      source ./.env
+      Backend for LibreLib
+      go version
+    '';
 
   enterTest = ''
     echo "Running tests"
