@@ -2,7 +2,7 @@ compose:
 	. ./scripts/docker-compose_start.sh
 
 migrate-up:
-	. ./scripts/migrate-up
+	. ./scripts/migrate-up.sh
 
 migrate-down:
 	. ./scripts/migrate-down.sh
