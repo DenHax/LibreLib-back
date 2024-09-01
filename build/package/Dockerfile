@@ -16,7 +16,7 @@ RUN go build -o ./bin/librelib cmd/librelib/main.go
 
 FROM alpine AS runner
 
-COPY --from=builder /usr/local/share / 
+COPY --from=builder /usr/local/src / 
 
 COPY configs/config.yaml /config.yaml
 
