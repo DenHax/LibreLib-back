@@ -9,8 +9,11 @@ services:
 
   psql:
     restart: always
+    container_name: lib-psql
     image: postgres:latest
     volumes:
       - ./.database/postgres/data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT}:5432
+    environment:
+    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
