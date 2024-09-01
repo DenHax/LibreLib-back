@@ -4,20 +4,18 @@ WORKDIR /usr/local/src
 
 RUN apk --no-cache add bash git make gcc gettext musl-dev
 
-COPY ["../../go.mod", "../../go.sum" "./"]
+COPY ["../../go.mod", "../../go.sum", "./"]
 
 RUN go mod download
 
-COPY ["../../"]
+COPY ../../cmd ./cmd
+# COPY ../../internal ./internal
 
-COPY ../../ ./
-
-RUN go build -o ./bin/librelib cmd/librelib/main.go
+RUN go build -o ./bin/librelib ./cmd/librelib/main.go
 
 FROM alpine AS runner
 
-COPY --from=builder /usr/local/src / 
-
-COPY configs/config.yaml /config.yaml
+COPY --from=builder /usr/local/src/bin/librelib / 
+# COPY ../configs/config.yaml /config.yaml
 
 CMD ["/librelib"]
