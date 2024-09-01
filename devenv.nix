@@ -12,6 +12,7 @@
     git
     docker
     docker-compose
+    go-migrate
   ];
 
   # Main service language
