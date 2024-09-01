@@ -1,19 +1,31 @@
 services:
-  # backend:
-  #   build: ../build/package 
-  #   command: ../build/package/liblrelib
-  #   depends_on:
-  #     - psql
-  #   ports:
-  #     - 8080:8080
+  backend:
+    build: 
+      context: ../build/package/
+      # dockerfile: ../build/package/Dockerfile
+    command: ../build/package/liblrelib
+    depends_on:
+      - psql
+    ports:
+      - 8080:8080
+    env_file:
+        - ../.env
 
   psql:
     restart: always
     container_name: lib-psql
     image: postgres:latest
-    volumes:
-      - ./.database/postgres/data:/var/lib/postgresql/data
     ports:
       - ${POSTGRES_PORT}:5432
     environment:
-    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - ../third_party/postgres/.database/postgres/data:/var/lib/postgresql/data
+      - ../init/sql:/docker-entrypoint-initdb.d
+    command: >
+      sh -c "envsubst < /docker-entrypoint-initdb.d/init.sql | psql -U ${DB_USER} -d ${DB_NAME}"
+
+volumes:
+  psql_data:
