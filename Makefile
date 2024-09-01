@@ -12,3 +12,6 @@ migrate-drop:
 
 psql-start:
 	. ./scripts/psql_start.sh
+
+in-psql:
+	. ./scripts/lookup-in-psql.sh
