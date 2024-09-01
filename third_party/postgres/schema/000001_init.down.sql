@@ -4,7 +4,7 @@ DROP TABLE "Order-Product";
 
 DROP TABLE "Favorites-Product";
 
-DROP TABLE "Book";
+-- DROP TABLE "Book";
 
 DROP TABLE "Product";
 
