@@ -8,6 +8,8 @@
 {
   env.GREET = "devenv";
 
+  dotenv.enable = true;
+
   packages = with pkgs; [
     git
     docker
