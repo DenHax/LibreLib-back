@@ -9,3 +9,6 @@ migrate-down:
 
 migrate-drop:
 	. ./scripts/migrate-drop.sh
+
+psql-start:
+	. ./scripts/psql_start.sh
