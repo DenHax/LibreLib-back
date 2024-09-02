@@ -1,20 +1,23 @@
 services:
   backend:
+    container_name: lib-go-serv
+    image: golang:1.21-alpine
     build: 
       context: ../build/package/
-      # dockerfile: ../build/package/Dockerfile
     command: ../build/package/liblrelib
     depends_on:
-      - psql
+      - db
     ports:
       - 8080:8080
     env_file:
         - ../.env
+    environment:
+      - DATABASE_URL=postgres://${DB_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${DB_NAME}?sslmode=disable
 
-  psql:
+  db:
     restart: always
     container_name: lib-psql
-    image: postgres:latest
+    image: postgres:16
     ports:
       - ${POSTGRES_PORT}:5432
     environment:
@@ -28,4 +31,4 @@ services:
       sh -c "envsubst < /docker-entrypoint-initdb.d/init.sql | psql -U ${DB_USER} -d ${DB_NAME}"
 
 volumes:
-  psql_data:
+  data:
