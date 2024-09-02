@@ -42,14 +42,15 @@
 
   enterShell = # bash
     ''
-      source ./.env
-      Backend for LibreLib
+      source .env
+      echo "Backend for LibreLib"
       go version
     '';
 
-  enterTest = ''
-    echo "Running tests"
-    git --version | grep --color=auto "${pkgs.git.version}"
-  '';
+  enterTest = # bash
+    ''
+      echo "Running tests"
+      git --version | grep --color=auto "${pkgs.git.version}"
+    '';
 
 }
