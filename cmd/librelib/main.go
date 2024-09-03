@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"sync"
+
+	"github.com/DenHax/LibreLib-back/internal/database"
 )
 
 var (
@@ -56,8 +58,9 @@ func getNameHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	fmt.Println("LibreLib Backend")
-	http.HandleFunc("/set-name", setNameHandler)
-	http.HandleFunc("/get-name", getNameHandler)
+	database.Start()
+	// http.HandleFunc("/set-name", setNameHandler)
+	// http.HandleFunc("/get-name", getNameHandler)
 
-	http.ListenAndServe(":8080", nil)
+	// http.ListenAndServe(":8080", nil)
 }

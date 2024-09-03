@@ -2,7 +2,7 @@
 PSQL_DOCKER_ID=$(docker ps --filter='name=lib-psql' --format='{{.ID}}')
 
 if [ -z "$PSQL_DOCKER_ID" ]; then
-  echo "Conteiner for postgres not found. Script stopped."
+  echo "Container for postgres not found. Script stopped."
   exit 1
 fi
 
