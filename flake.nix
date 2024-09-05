@@ -40,11 +40,6 @@
 
                 env.GREET = "devenv";
 
-                dotenv = {
-                  enable = true;
-                  filename = ".env";
-                };
-
                 packages = with pkgs; [
                   git
                   docker

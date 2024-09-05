@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 PSQL_DOCKER_ID=$(docker ps --filter='name=lib-psql' --format='{{.ID}}')
 
 if [ -z "$PSQL_DOCKER_ID" ]; then
