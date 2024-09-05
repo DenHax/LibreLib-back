@@ -1,5 +1,6 @@
 # Devenv
 .devenv
+.default.nix
 # devenv.local.nix
 
 # direnv
