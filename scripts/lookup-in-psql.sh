@@ -7,4 +7,4 @@ if [ -z "$PSQL_DOCKER_ID" ]; then
   exit 1
 fi
 
-docker exec -it "$PSQL_DOCKER_ID" /usr/bin/env bash -c "psql -U postgres"
+docker exec -it "$PSQL_DOCKER_ID" /usr/bin/env bash -c "psql -U ${DB_USER} -d ${DB_NAME}"

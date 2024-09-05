@@ -6,7 +6,7 @@ POSTGRES_PORT=5432
 POSTGRES_HOST=postgres
 DB_USER=librelib-admin
 DB_NAME=librelib
-DATABASE_URL=postgres://${DB_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${DB_NAME}?sslmode=disable
+DATABASE_URL=postgres://\${DB_USER}:\${POSTGRES_PASSWORD}@\${POSTGRES_HOST}:\${POSTGRES_PORT}/\${DB_NAME}?sslmode=disable
 EOL
 
 #!/usr/bin/env bash
