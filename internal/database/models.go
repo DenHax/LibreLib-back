@@ -27,6 +27,14 @@ type Product struct {
 	ProductType string
 }
 
+type Book struct {
+	Basis 	Product
+	Name 	string
+	Author 	string
+	Genre 	string
+	Year 	int
+}
+
 type Order struct {
 	Id         int
 	Date       string

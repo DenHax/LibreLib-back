@@ -32,31 +32,23 @@ func Start() {
 	defer db.Close()
 
 	fmt.Println("Connection!")
-	sendRequest(db, `TRUNCATE TABLE "Customer"`)
-	sendRequest(db, `INSERT INTO "Customer" ("id", "name", "email", "phone", "address") 
-		VALUES (1, 'John Doe', 'johndoe@example.com', '123-456-7890', '123 Elm St, Springfield, IL');`)
-	sendRequest(db, `INSERT INTO "Customer" ("id", "name", "email", "phone", "address") 
-		VALUES (2, 'Jane Smith', 'janesmith@example.com', '098-765-4321', '456 Oak St, Metropolis, IL');`)
-	sendRequest(db, `INSERT INTO "Customer" ("id", "name", "email", "phone", "address") 
-		VALUES (3, 'Alice Johnson', 'alice.johnson@example.com', '555-123-4567', '789 Maple St, Gotham, NY');`)
-	sendRequest(db, `INSERT INTO "Customer" ("id", "name", "email", "phone", "address") 
-		VALUES (4, 'Bob White', 'bob.white@example.com', '444-555-6666', '321 Pine St, Smallville, KS');`)
 
-	
-	rows := selectData(db, "SELECT id, name, email, phone, address FROM \"Customer\"")
+	rows := selectData(db, "SELECT id, name, email, phone, address FROM customer;")
+
 	defer rows.Close()
 
-	users := []Customer{}
+	customers := []Customer{}
 	for rows.Next() {
-		p := Customer{}
-		err := rows.Scan(&p.Id, &p.Name, &p.Email, &p.Phone, &p.Address)
+		customer := Customer{}
+		err := rows.Scan(&customer.Id, &customer.Name, &customer.Email, &customer.Phone, &customer.Address)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("reading error")
 			continue
 		}
-		users = append(users, p)
+		customers = append(customers, customer)
 	}
-	for _, p := range users {
-		fmt.Println(p.Id, p.Name, p.Email, p.Phone, p.Address)
+	for _, customer := range customers {
+		fmt.Println(customer.Id, customer.Name, customer.Email, customer.Phone, customer.Address)
 	}
+
 }
