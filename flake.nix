@@ -37,6 +37,7 @@
             inherit inputs pkgs;
             modules = [
               {
+
                 env.GREET = "devenv";
 
                 dotenv = {
@@ -76,7 +77,7 @@
 
                 enterShell = # bash
                   ''
-                    source .env
+                    # source .env
                     echo "Backend for LibreLib"
                     go version
                   '';
