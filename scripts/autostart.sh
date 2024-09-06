@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cat <<EOL >.env
+cat <<EOL >../.env
 POSTGRES_PASSWORD=p4ssw0rd
 POSTGRES_PORT=5432
 POSTGRES_HOST=postgres
