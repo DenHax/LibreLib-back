@@ -47,6 +47,8 @@
                   go-migrate
                 ];
 
+                dotenv.enable = true;
+
                 # Main service language
                 languages.go = {
                   enable = true;
