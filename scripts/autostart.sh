@@ -11,8 +11,8 @@ EOL
 
 #!/usr/bin/env bash
 
-if [ -f .env ]; then
-  export "$(grep -v '^#' .env | xargs)"
+if [ -f ../.env ]; then
+  export "$(grep -v '^#' ../.env | xargs)"
   echo "Environment activation: succeeded"
 else
   echo "Error: .env file not found"
