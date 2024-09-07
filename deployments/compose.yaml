@@ -1,7 +1,7 @@
 services:
   backend:
     container_name: lib-go-serv
-    # image: lib-go:local
+    image: lib-go
     # image: golang:1.21-alpine
     build: 
       context: ..
@@ -15,7 +15,7 @@ services:
 
   db:
     restart: always
-    container_name: lib-psql
+    container_name: lib-psql-serv
     image: postgres:16
     env_file:
         - ../.env
@@ -28,6 +28,3 @@ services:
     volumes:
       - ../third_party/postgres/.database/postgres/data:/var/lib/postgresql/data
       - ../init/sql:/docker-entrypoint-initdb.d
-
-# volumes:
-#   data:
