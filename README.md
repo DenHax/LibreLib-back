@@ -93,12 +93,12 @@ sudo apt install make git docker
 sudo apt-get install make git docker
 ```
 
-# Install make in Arch, Manjaro
+### Arch, Manjaro
 ```bash
 sudo pacman -S make git docker
 ```
 
-### Install make in VoidLinux
+### VoidLinux
 
 ```bash
 sudo xbps-install -S make git docker
@@ -106,12 +106,12 @@ sudo xbps-install -S make git docker
 
 ### NixOS and Nix
 
-# 1. Install via nix-env
+#### 1. Install via nix-env
 ```bash
 nix-env -iA nixpkgs.make nixpkgs.git nixpkgs.docker
 ```
 
-### 2. Install in system packages
+#### 2. Install in system packages
 
 ```nix
 # /etc/nixos/configuration.nix
@@ -122,7 +122,7 @@ nix-env -iA nixpkgs.make nixpkgs.git nixpkgs.docker
 }
 ```
 
-Rebuild system
+#### Rebuild system
 
 ```bash
 sudo nixos-rebuild switch
@@ -183,6 +183,7 @@ go build ./cmd/librelib/main.go
 ```
 
 ### Docker (compose):
+
 ```bash
 apt install docker
 
