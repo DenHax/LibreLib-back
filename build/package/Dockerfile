@@ -2,13 +2,13 @@ FROM golang:1.21-alpine AS builder
 
 WORKDIR /usr/local/src
 
-RUN apk add --no-cache bash git make gcc gettext envsubst musl-dev 
+RUN apk add --no-cache bash git make gcc gettext musl-dev 
 
-COPY ../go.mod ../go.sum .
+COPY ./go.mod .
 
 RUN go mod download
 
-COPY ../cmd ./cmd
+COPY ./cmd ./cmd
 
 RUN go build -o ./bin/librelib ./cmd/librelib/main.go
 
@@ -18,6 +18,6 @@ COPY --from=builder /usr/local/src/bin/librelib /
 
 RUN apk add --no-cache ca-certificates
 
-COPY ../configs/config.yaml /config.yaml
+# COPY ../configs/config.yaml /config.yaml
 
 CMD ["/librelib"]
