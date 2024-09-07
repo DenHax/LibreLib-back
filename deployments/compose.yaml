@@ -1,10 +1,11 @@
 services:
   backend:
-    restart: always
     container_name: lib-go-serv
-    image: golang:1.21-alpine
+    # image: lib-go:local
+    # image: golang:1.21-alpine
     build: 
       context: ..
+      dockerfile: build/package/Dockerfile
     depends_on:
       - db
     ports:
