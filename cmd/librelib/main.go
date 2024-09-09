@@ -60,8 +60,7 @@ func main() {
 	fmt.Println("LibreLib Backend")
 	database.Start()
 
-
-	// http.HandleFunc("/set-name", setNameHandler)
-	// http.HandleFunc("/get-name", getNameHandler)
-	// http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/set-name", setNameHandler)
+	http.HandleFunc("/get-name", getNameHandler)
+	http.ListenAndServe(":8080", nil)
 }
