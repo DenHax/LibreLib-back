@@ -1,53 +1,53 @@
 package database
 
-type Cart_Product struct {
-	ProductID int
-	CartID    int
+type Salesman struct {
+	ID       int    `json:"id"`
+	ShopName string `json:"shopname"`
+	Email    string `json:"email"`
+	Phone    string `json:"phone"`
 }
 
 type Customer struct {
-	Id      int
-	Name    string
-	Email   string
-	Phone   string
-	Address string
-}
-
-type Salesman struct {
-	Id       int
-	Shopname string
-	Email    string
-	Phone    string
+	ID      int    `json:"id"`
+	Name    string `json:"name"`
+	Email   string `json:"email"`
+	Phone   string `json:"phone"`
+	Address string `json:"address"`
 }
 
 type Product struct {
-	Id          int
-	SalesmanID  int
-	Price       int
-	ProductType string
+	ID         int    `json:"id"`
+	SalesmanID int    `json:"salesmanid"`
+	Price      int    `json:"price"`
+	Type       string `json:"type"`
 }
 
 type Book struct {
-	Basis 	Product
-	Name 	string
-	Author 	string
-	Genre 	string
-	Year 	int
+	Name   string `json:"name"`
+	Author string `json:"author"`
+	Genre  string `json:"genre"`
+	Year   int16  `json:"year"`
+	Product
 }
 
 type Order struct {
-	Id         int
-	Date       string
-	Status     string
-	CustomerID int
+	ID         int    `json:"id"`
+	Date       string `json:"date"`
+	Status     string `json:"status"`
+	CustomerID int    `json:"customerid"`
 }
 
-type Order_Product struct {
-	OrderID   int
-	ProductID int
+type CartProduct struct {
+	ProductID int `json:"productid"`
+	CartID    int `json:"cartid"`
 }
 
-type Favorites_Product struct {
-	ProductID   int
-	FavoritesID int
+type OrderProduct struct {
+	OrderID   int `json:"orderid"`
+	ProductID int `json:"productid"`
+}
+
+type FavoritesProduct struct {
+	ProductID   int `json:"productid"`
+	FavoritesID int `json:"favoritesid"`
 }
