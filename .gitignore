@@ -1,6 +1,7 @@
 # Devenv
-.devenv*
-devenv.local.nix
+.devenv
+.default.nix
+# devenv.local.nix
 
 # direnv
 .direnv
@@ -30,3 +31,6 @@ go.work.sum
 
 # env file
 .env
+
+# database data 
+.data
