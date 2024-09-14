@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/DenHax/LibreLib-back/internal/database"
+	"github.com/DenHax/LibreLib-back/internal/router"
 )
 
 var (
@@ -56,38 +56,10 @@ func getNameHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	fmt.Println("LibreLib Backend")
-	db := database.Connect()
-	defer db.Close()
-	rows := database.Select_data(db, `SELECT 
-    b.name,
-    b.author,
-    b.genre,
-    b.year,
-    p.price,
-	p.id,
-	p.salesmanid,
-	p.type
-FROM 
-    "cart-product" cp
-JOIN 
-    "product" p ON cp.productid = p.id
-JOIN 
-    "book" b ON p.id = b.id
-JOIN 
-    "customer" c ON cp.cartid = c.id
-WHERE 
-    c.id = 3 
-AND 
-    p.type = 'book';`)
-	defer rows.Close()
-	books := database.Set_Book_data(rows)
-	for _, book := range books {
-		fmt.Println(book.Name, book.Author, book.Genre, book.Year, book.Price, book.Product.ID, book.Product.SalesmanID, book.Product.Type)
-	}
-	JSON_str := database.ToJSON(books)
-	fmt.Println(JSON_str)
+
+	r := router.GetRouter()
 
 	// http.HandleFunc("/set-name", setNameHandler)
 	// http.HandleFunc("/get-name", getNameHandler)
-	// http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", r)
 }
