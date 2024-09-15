@@ -21,14 +21,14 @@ func GetAllBooks(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(bookList)
 }
 
-func GetBooksByID(w http.ResponseWriter, r *http.Request) {
+func GetBooksByCustomerID(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
 		http.Error(w, "Invalid customer ID", http.StatusBadRequest)
 		return
 	}
-	book, err := database.GetBooksByID(db, id)
+	book, err := database.GetBooksByCustomerID(db, id)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 	}

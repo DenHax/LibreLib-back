@@ -55,8 +55,7 @@ func GetBooks(db *sql.DB) ([]Book, error) {
 	return books, nil
 }
 
-
-func GetBooksByID(db *sql.DB, ID int) ([]Book, error) {
+func GetBooksByCustomerID(db *sql.DB, ID int) ([]Book, error) {
 	fmt.Println(ID)
 	query :=
 		`SELECT 
