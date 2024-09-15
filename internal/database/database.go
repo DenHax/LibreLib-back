@@ -2,8 +2,9 @@ package database
 
 import (
 	"database/sql"
-	_ "github.com/lib/pq"
 	"fmt"
+
+	_ "github.com/lib/pq"
 )
 
 func GetDB() *sql.DB {
@@ -16,7 +17,7 @@ func GetDB() *sql.DB {
 	return db
 }
 
-func GetBooks(db *sql.DB) ([]Book, error) {
+func GetBooksByID(db *sql.DB) ([]Book, error) {
 	query := `
 	SELECT 
 		p.id AS product_id,

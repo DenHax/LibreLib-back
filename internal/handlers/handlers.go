@@ -10,8 +10,8 @@ import (
 
 var db *sql.DB = database.GetDB()
 
-func GetAllBook(w http.ResponseWriter, r *http.Request) {
-	bookList, err := database.GetBooks(db)
+func GetAllBookByID(w http.ResponseWriter, r *http.Request) {
+	bookList, err := database.GetBooksByID(db)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 	}
