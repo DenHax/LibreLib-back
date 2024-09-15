@@ -17,7 +17,7 @@ func GetDB() *sql.DB {
 	return db
 }
 
-func GetBooksByID(db *sql.DB) ([]Book, error) {
+func GetBooks(db *sql.DB) ([]Book, error) {
 	query := `
 	SELECT 
 		p.id AS product_id,
