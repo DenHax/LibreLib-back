@@ -101,7 +101,7 @@ func GetBooksByCustomerID(db *sql.DB, ID int) ([]Book, error) {
 	return books, nil
 }
 
-func getBooksByAuthor(db *sql.DB, author string) ([]Book, error) {
+func GetBooksByAuthor(db *sql.DB, author string) ([]Book, error) {
 	query :=
 		`SELECT
 		p.id AS product_id,
