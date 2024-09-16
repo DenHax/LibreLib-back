@@ -7,7 +7,7 @@ import (
 
 func GetRouter() *mux.Router {
 	router := mux.NewRouter()
-	router.HandleFunc("/getBooks", handlers.GetAllBooks).Methods("GET")
-	router.HandleFunc("/getBooks/{id}", handlers.GetBooksByCustomerID).Methods("GET")
+	router.HandleFunc("/books", handlers.GetAllBooks).Methods("GET")
+	router.HandleFunc("/books/{id}", handlers.GetBooksByCustomerID).Methods("GET")
 	return router
 }
