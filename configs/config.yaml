@@ -1,0 +1,10 @@
+server:
+  Port:
+
+postgres:
+  host: ${POSTGRES__HOST}
+  port: ${POSTGRES__PORT}
+  username: ${DB_USER}
+  name: ${POSTGRES__DB}
+  password: ${POSTGRES__PASSWORD}
+  sslmode: ${SSL_MODE}
