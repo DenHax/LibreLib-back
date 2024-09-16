@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+  "github.com/DenHax/LibreLib-back/internal/config"
 
 	_ "github.com/lib/pq"
 )
