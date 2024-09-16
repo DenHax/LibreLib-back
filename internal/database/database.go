@@ -100,3 +100,81 @@ func GetBooksByCustomerID(db *sql.DB, ID int) ([]Book, error) {
 	}
 	return books, nil
 }
+
+func getBooksByAuthor(db *sql.DB, author string) ([]Book, error) {
+	query :=
+		`SELECT
+		p.id AS product_id,
+		p.salesmanid,
+		p.price,
+		p.type,
+		b.name AS book_name,
+		b.author,
+		b.genre,
+		b.year
+	FROM
+		"product" p
+	JOIN
+		"book" b ON p.id = b.id
+	WHERE
+		b.author = $1;`
+
+	rows, err := db.Query(query, author)
+
+	if err != nil {
+		panic(err)
+	}
+	defer rows.Close()
+
+	books := []Book{}
+
+	for rows.Next() {
+		p := Book{}
+		err := rows.Scan(&p.ID, &p.SalesmanID, &p.Price, &p.Type, &p.Name, &p.Author, &p.Genre, &p.Year)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		books = append(books, p)
+	}
+	return books, nil
+}
+
+func GetBooksByGenre(db *sql.DB, genre string) ([]Book, error) {
+	query :=
+		`SELECT
+		p.id AS product_id,
+		p.salesmanid,
+		p.price,
+		p.type,
+		b.name AS book_name,
+		b.author,
+		b.genre,
+		b.year
+	FROM
+		"product" p
+	JOIN
+		"book" b ON p.id = b.id
+	WHERE
+		b.genre = $1;`
+
+	rows, err := db.Query(query, genre)
+
+	if err != nil {
+		panic(err)
+	}
+	defer rows.Close()
+
+	books := []Book{}
+
+	for rows.Next() {
+		p := Book{}
+		err := rows.Scan(&p.ID, &p.SalesmanID, &p.Price, &p.Type, &p.Name, &p.Author, &p.Genre, &p.Year)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		books = append(books, p)
+	}
+	return books, nil
+}
