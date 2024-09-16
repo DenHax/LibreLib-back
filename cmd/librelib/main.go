@@ -13,8 +13,8 @@ func main() {
 
 	cfg := config.MustConfig()
 
-	db := database.Connect()
-	defer db.Close()
+	storage := database.Connect()
+	defer storage.Close()
 
 	//TODO: Config init
 	//TODO: Logger init
