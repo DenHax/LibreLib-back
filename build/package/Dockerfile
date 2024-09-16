@@ -8,7 +8,7 @@ COPY ./go.mod .
 
 RUN go mod download
 
-COPY ./cmd ./cmd
+COPY ./ ./
 
 RUN go build -o ./bin/librelib ./cmd/librelib/main.go
 
