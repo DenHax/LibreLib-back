@@ -7,7 +7,6 @@ import (
 	"strconv"
 
 	"github.com/DenHax/LibreLib-back/internal/database"
-	"github.com/gorilla/mux"
 )
 
 var db *sql.DB = database.GetDB()
@@ -22,8 +21,8 @@ func GetAllBooks(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetBooksByCustomerID(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	id, err := strconv.Atoi(vars["id"])
+	id_str := r.URL.Query().Get("id")
+	id, err := strconv.Atoi(id_str)
 	if err != nil {
 		http.Error(w, "Invalid customer ID", http.StatusBadRequest)
 		return
