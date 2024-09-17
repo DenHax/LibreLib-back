@@ -7,11 +7,8 @@ import (
 
 func GetRouter() *mux.Router {
 	router := mux.NewRouter()
-	booksRouter := router.PathPrefix("/books").Subrouter()
-	booksRouter.HandleFunc("", handlers.GetAllBooks).Methods("GET")
-	booksRouter.HandleFunc("/author", handlers.GetBooksByAuthor).Methods("GET")
-	// router.HandleFunc("/books/genre", handlers.GetBooksByGenre).Methods("GET")
-	// router.HandleFunc("/books/year", handlers.GetBooksByYear).Methods("GET")
-	// router.HandleFunc("/cart", handlers.GetBooksByCustomerID).Methods("GET")
+	// booksRouter := router.PathPrefix("/books").Subrouter()
+	router.HandleFunc("/books", handlers.GetBooksHandler).Methods("GET")
+	router.HandleFunc("/cart", handlers.GetCustomerCartHandler).Methods("GET")
 	return router
 }
