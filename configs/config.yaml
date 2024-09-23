@@ -3,17 +3,17 @@ env:  "dev"
 level: "debug"
 
 server:
-  - port=${APP_PORT}
-  - ssl_mode=${SSL_MODE}
-  # app_version: 1.0
-  # read_timeout: 5
-  # write_timeout: 5
+  app_version: 1.0
+  ssl_mode: disable
+  read_timeout: 5s
+  write_timeout: 5s
+  # port: ${APP_PORT}
 
 postgres:
-  - url=${POSTGRES_URL}
-  - host=${POSTGRES_HOST}
-  - port=${POSTGRES_PORT}
-  - username=${DB_USER}
-  - name=${POSTGRES_DB}
-  - password=${POSTGRES_PASSWORD}
-  - ssl_mode=${SSL_MODE}
+  ssl_mode: disable
+  # url: ${POSTGRES_URL}
+  # host: ${POSTGRES_HOST}
+  # port: ${POSTGRES_PORT}
+  # username: ${DB_USER}
+  # name: ${POSTGRES_DB}
+  # password: ${POSTGRES_PASSWORD}

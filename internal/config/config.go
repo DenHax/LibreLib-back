@@ -23,18 +23,19 @@ type ServerConfig struct {
 }
 
 type Postgres struct {
-	URL      string // `yaml:"url"`
-	Host     int    // `yaml:"host"`
-	Port     int    // `yaml:"port"`
-	User     string // `yaml:"user"`
-	Password string // `yaml:"password"`
-	Name     string // `yaml:"name"`
-	SSLMode  string // `yaml:"ssl_mode"`
+	URL      string `env:"POSTGRES_URL"`
+	Host     string `env:"POSTGRES_HOST"`
+	Port     string `env:"POSTGRES_PORT"`
+	User     string `env:"DB_USER"`
+	Password string `env:"POSTGRES_PASSWOWRD"`
+	Name     string `env:"DB_NAME"`
+	SSLMode  string `env:"ssl_mode"`
 }
 
 type Logger struct {
 	Env   string `yaml:"env" env-default:"local"`
 	Level string `yaml:"level"`
+}
 
 func MustConfig() *Config {
 	configPath := os.Getenv("CONFIG_PATH")
