@@ -4,12 +4,15 @@ if (Test-Path -Path ".\.env") {
 } else {
     # Создание .env файла
     @"
+
 POSTGRES_PASSWORD=p4ssw0rd
-POSTGRES_PORT=5438
+POSTGRES_PORT=5432
 POSTGRES_HOST=127.0.0.1
 DB_USER=librelib-admin
 DB_NAME=librelib
-DATABASE_URL=postgres://${env:DB_USER}:${env:POSTGRES_PASSWORD}@${env:POSTGRES_HOST}:${env:POSTGRES_PORT}/${env:DB_NAME}?sslmode=disable
+SSL_MODE=disable
+APP_PORT=8080
+POSTGRES_URL=postgres://\${env:DB_USER}:\${env:POSTGRES_PASSWORD}@\${env:POSTGRES_HOST}:\${env:POSTGRES_PORT}/\${env:DB_NAME}?sslmode=\${env:SSL_MODE}
 "@ | Set-Content -Path ".\.env"
     Write-Host ".env file created successfully"
 }

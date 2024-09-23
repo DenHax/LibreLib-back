@@ -6,16 +6,19 @@ else
   cat <<EOL >.env
 POSTGRES_PASSWORD=p4ssw0rd
 POSTGRES_PORT=5432
-POSTGRES_HOST=postgres
+POSTGRES_HOST=127.0.0.1
 DB_USER=librelib-admin
 DB_NAME=librelib
-DATABASE_URL=postgres://\${DB_USER}:\${POSTGRES_PASSWORD}@\${POSTGRES_HOST}:\${POSTGRES_PORT}/\${DB_NAME}?sslmode=disable
+SSL_MODE=disable
+APP_PORT=8080
+POSTGRES_URL=postgres://\${DB_USER}:\${POSTGRES_PASSWORD}@\${POSTGRES_HOST}:\${POSTGRES_PORT}/\${DB_NAME}?sslmode=\${SSL_MODE}
 EOL
   echo ".env file created successfully"
 fi
 
 if [ -f ./.env ]; then
-  export "$(grep -v '^#' ./.env | xargs)"
+  eval "$(grep -v '^#' ./.env | xargs -d '\n' -I {} echo export {})"
+
   if [ $? -eq 0 ]; then
     echo "Environment activation: succeeded"
   else
@@ -24,3 +27,14 @@ if [ -f ./.env ]; then
 else
   echo "Error: .env file not found"
 fi
+
+# if [ -f ./.env ]; then
+#   export "$(grep -v '^#' ./.env | xargs)"
+#   if [ $? -eq 0 ]; then
+#     echo "Environment activation: succeeded"
+#   else
+#     echo "Error: Failed to export environment variables"
+#   fi
+# else
+#   echo "Error: .env file not found"
+# fi
