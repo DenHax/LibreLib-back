@@ -8,27 +8,32 @@ import (
 )
 
 type Config struct {
-	Server HTTPserver
-	PSQL   Postgres
+	Server  ServerConfig `yaml:"server"`
+	Storage Postgres     `yaml:"postgres"`
 }
 
-type HTTPserver struct {
-	Port int
+type ServerConfig struct {
+	Port    int    // `yaml:"port"`
+	SSLMode string // `yaml:"ssl_mode"`
+	// AppVersion string // `yaml:"app_version"`
+	// ReadTimeout  time.Duration // `yaml:"read_timeout"`
+	// WriteTimeout time.Duration // `yaml:"write_timeout"`
 }
 
 type Postgres struct {
-	Host     int
-	Port     int
-	User     string
-	Password string
-	Name     string
-	SSLmode  string
+	URL      string // `yaml:"url"`
+	Host     int    // `yaml:"host"`
+	Port     int    // `yaml:"port"`
+	User     string // `yaml:"user"`
+	Password string // `yaml:"password"`
+	Name     string // `yaml:"name"`
+	SSLMode  string // `yaml:"ssl_mode"`
 }
 
-type Logger struct {
-	Dev   bool
-	Level string
-}
+// type Logger struct {
+// 	Env   string `yaml:"env"`
+// 	Level string `yaml:"level"`
+// }
 
 func MustConfig() *Config {
 	configPath := os.Getenv("CONFIG_PATH")
