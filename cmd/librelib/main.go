@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"strconv"
 
 	"github.com/DenHax/LibreLib-back/internal/config"
-	"github.com/DenHax/LibreLib-back/internal/database"
 	"github.com/DenHax/LibreLib-back/internal/router"
 )
 
@@ -12,9 +13,14 @@ func main() {
 	fmt.Println("LibreLib Backend")
 
 	cfg := config.MustConfig()
-
-	storage := database.Connect()
-	defer storage.Close()
+	fmt.Println(cfg.Server)
+	fmt.Println(cfg.Storage)
+	// storage, err := postgres.New(cfg.Storage)
+	// if err != nil {
+	// 	fmt.Println("failed to init storage ",err)
+	// 	os.Exit(1)
+	// }
+	// defer storage.Close()
 
 	//TODO: Config init
 	//TODO: Logger init
@@ -25,5 +31,5 @@ func main() {
 
 	// http.HandleFunc("/set-name", setNameHandler)
 	// http.HandleFunc("/get-name", getNameHandler)
-	http.ListenAndServe(":8080", r)
+	http.ListenAndServe(":"+strconv.Itoa(cfg.Server.Port), r)
 }
