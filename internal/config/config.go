@@ -11,6 +11,7 @@ import (
 type Config struct {
 	Server  ServerConfig `yaml:"server"`
 	Storage Postgres     `yaml:"postgres"`
+	Logger  Logger
 }
 
 type ServerConfig struct {
@@ -31,10 +32,9 @@ type Postgres struct {
 	SSLMode  string // `yaml:"ssl_mode"`
 }
 
-// type Logger struct {
-// 	Env   string `yaml:"env"`
-// 	Level string `yaml:"level"`
-// }
+type Logger struct {
+	Env   string `yaml:"env" env-default:"local"`
+	Level string `yaml:"level"`
 
 func MustConfig() *Config {
 	configPath := os.Getenv("CONFIG_PATH")
