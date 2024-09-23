@@ -47,7 +47,7 @@
                   go-migrate
                 ];
 
-                dotenv.enable = true;
+                # dotenv.enable = true;
 
                 # Main service language
                 languages.go = {
@@ -74,9 +74,9 @@
 
                 enterShell = # bash
                   ''
-                    # source .env
                     echo "Backend for LibreLib"
                     go version
+                    source .env
                   '';
 
                 enterTest = # bash
