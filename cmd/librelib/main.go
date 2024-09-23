@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/DenHax/LibreLib-back/internal/config"
 	"github.com/DenHax/LibreLib-back/internal/router"
@@ -31,5 +30,5 @@ func main() {
 
 	// http.HandleFunc("/set-name", setNameHandler)
 	// http.HandleFunc("/get-name", getNameHandler)
-	http.ListenAndServe(":"+strconv.Itoa(cfg.Server.Port), r)
+	http.ListenAndServe(":"+cfg.Server.Port, r)
 }

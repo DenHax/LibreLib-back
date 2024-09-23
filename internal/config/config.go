@@ -3,6 +3,7 @@ package config
 import (
 	"log"
 	"os"
+	"time"
 
 	"github.com/ilyakaznacheev/cleanenv"
 )
@@ -13,11 +14,11 @@ type Config struct {
 }
 
 type ServerConfig struct {
-	Port    int    // `yaml:"port"`
-	SSLMode string // `yaml:"ssl_mode"`
-	// AppVersion string // `yaml:"app_version"`
-	// ReadTimeout  time.Duration // `yaml:"read_timeout"`
-	// WriteTimeout time.Duration // `yaml:"write_timeout"`
+	AppVersion   string        `yaml:"app_version"`
+	Port         string        `yaml:"port" env:"APP_PORT" env_default:"8080"`
+	SSLMode      string        `yaml:"ssl_mode" env-default:"disable"`
+	ReadTimeout  time.Duration `yaml:"read_timeout"`
+	WriteTimeout time.Duration `yaml:"write_timeout"`
 }
 
 type Postgres struct {
