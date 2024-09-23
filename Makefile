@@ -29,7 +29,7 @@ psql-start:
 in-psql:
 	. ./scripts/lookup-in-psql.sh
 
-auto-start:
+autostart:
 ifeq ($(OS),Linux)
 	. ./scripts/autostart.sh
 else ifeq ($(OS),Darwin)
