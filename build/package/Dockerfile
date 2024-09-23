@@ -18,6 +18,8 @@ COPY --from=builder /usr/local/src/bin/librelib /
 
 RUN apk add --no-cache ca-certificates
 
-# COPY ../configs/config.yaml /config.yaml
+COPY ./configs/config.yaml /config.yaml
+
+ENV CONFIG_PATH  /config.yaml
 
 CMD ["/librelib"]
