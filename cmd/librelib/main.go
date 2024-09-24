@@ -12,8 +12,6 @@ func main() {
 	fmt.Println("LibreLib Backend")
 
 	cfg := config.MustConfig()
-	fmt.Println(cfg.Server)
-	fmt.Println(cfg.Storage)
 	// storage, err := postgres.New(cfg.Storage)
 	// if err != nil {
 	// 	fmt.Println("failed to init storage ",err)
