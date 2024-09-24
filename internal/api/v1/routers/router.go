@@ -13,7 +13,7 @@ func Api() *mux.Router {
 	v1 := api.PathPrefix("/v1/").Subrouter()
 
 	booksRouter := v1.PathPrefix("/books").Subrouter()
-	booksRouter.HandleFunc("/author", handlers.GetNameHandler)
+	booksRouter.HandleFunc("/author", handlers.GetNameHandler).Methods("GET")
 
 	// booksRouter.HandleFunc("", handlers.GetAllBooks).Methods("GET")
 	// booksRouter.HandleFunc("/author", handlers.GetBooksByAuthor).Methods("GET")
