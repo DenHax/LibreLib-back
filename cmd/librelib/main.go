@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/DenHax/LibreLib-back/internal/api/v1/routers"
 	"github.com/DenHax/LibreLib-back/internal/config"
-	"github.com/DenHax/LibreLib-back/internal/router"
 )
 
 func main() {
@@ -24,7 +24,7 @@ func main() {
 	//TOD: PSQL init
 	//TODO: Server init
 
-	r := router.GetRouter()
+	r := routers.Api()
 
 	// http.HandleFunc("/set-name", setNameHandler)
 	// http.HandleFunc("/get-name", getNameHandler)

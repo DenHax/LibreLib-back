@@ -1,13 +1,18 @@
-package router
+package routers
 
 import (
-	"github.com/DenHax/LibreLib-back/internal/handlers"
+	"github.com/DenHax/LibreLib-back/internal/api/v1/handlers"
+	"github.com/DenHax/LibreLib-back/internal/middleware"
 	"github.com/gorilla/mux"
 )
 
-func GetRouter() *mux.Router {
-	router := mux.NewRouter()
-	booksRouter := router.PathPrefix("/books").Subrouter()
+func Api() *mux.Router {
+	r := mux.NewRouter()
+	api := r.PathPrefix("/api/").Subrouter()
+	api.Use(middleware.Middleware)
+	v1 := api.PathPrefix("/v1/").Subrouter()
+
+	booksRouter := v1.PathPrefix("/books").Subrouter()
 	booksRouter.HandleFunc("/author", handlers.GetNameHandler)
 
 	// booksRouter.HandleFunc("", handlers.GetAllBooks).Methods("GET")
@@ -15,5 +20,5 @@ func GetRouter() *mux.Router {
 	// router.HandleFunc("/books/genre", handlers.GetBooksByGenre).Methods("GET")
 	// router.HandleFunc("/books/year", handlers.GetBooksByYear).Methods("GET")
 	// router.HandleFunc("/cart", handlers.GetBooksByCustomerID).Methods("GET")
-	return router
+	return api
 }
