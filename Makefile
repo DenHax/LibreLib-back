@@ -29,6 +29,9 @@ psql-start:
 in-psql:
 	. ./scripts/lookup-in-psql.sh
 
+run-serv:
+	. ./scripts/run-serv.sh
+
 autostart:
 ifeq ($(OS),Linux)
 	. ./scripts/autostart.sh
