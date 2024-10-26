@@ -15,11 +15,12 @@ type Config struct {
 }
 
 type ServerConfig struct {
-	AppVersion   string        `yaml:"app_version"`
+	Address      string        `yaml:"address" env-default:"localhost:8080"`
 	Port         string        `yaml:"port" env:"APP_PORT" env_default:"8080"`
 	SSLMode      string        `yaml:"ssl_mode" env-default:"disable"`
 	ReadTimeout  time.Duration `yaml:"read_timeout"`
 	WriteTimeout time.Duration `yaml:"write_timeout"`
+	AppVersion   string        `yaml:"app_version"`
 }
 
 type Postgres struct {
@@ -37,7 +38,7 @@ type Logger struct {
 	Level string `yaml:"level"`
 }
 
-func MustConfig() *Config {
+func MustLoad() *Config {
 	configPath := os.Getenv("CONFIG_PATH")
 	if configPath == "" {
 		log.Fatal("CONFIG_PATH environment variable is not set")
