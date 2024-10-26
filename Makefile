@@ -5,7 +5,7 @@ POWERSHELL_AUTO := ./scripts/autostart.ps1
 
 all: compose migrate-up migrate-drop migrate-down psql-start in-psql auto-start
 
-compose:
+compose-run:
 ifeq ($(OS),Linux)
 	. ./scripts/docker-compose_start.sh
 else ifeq ($(OS),Darwin)
@@ -13,6 +13,9 @@ else ifeq ($(OS),Darwin)
 else ifeq ($(OS),Windows_NT)
 	@powershell -ExecutionPolicy Bypass -File ./scripts/docker-compose_start.ps1
 endif
+
+compose-down:
+	. ./scripts/docker_compose_down.sh
 
 migrate-up:
 	. ./scripts/migrate-up.sh
