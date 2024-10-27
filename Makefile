@@ -6,43 +6,35 @@ POWERSHELL_AUTO := ./scripts/autostart.ps1
 all: compose migrate-up migrate-drop migrate-down psql-start in-psql auto-start
 
 compose-run:
-ifeq ($(OS),Linux)
-	. ./scripts/docker-compose_start.sh
-else ifeq ($(OS),Darwin)
-	. ./scripts/docker-compose_start.sh
-else ifeq ($(OS),Windows_NT)
-	@powershell -ExecutionPolicy Bypass -File ./scripts/docker-compose_start.ps1
-endif
+	. ./scripts/deploy/docker-compose_start.sh
 
 compose-down:
-	. ./scripts/docker_compose_down.sh
+	. ./scripts/deploy/docker_compose_down.sh
+
+compose-env:
+	. ./scripts/gen/env-compose.sh
+
+compose-autostart:
+	@$(MAKE) compose-env
+	@$(MAKE) compose-run
 
 migrate-up:
-	. ./scripts/migrate-up.sh
+	. ./scripts/utils/migrate-up.sh
 
 migrate-down:
-	. ./scripts/migrate-down.sh
+	. ./scripts/utils/migrate-down.sh
 
 migrate-drop:
-	. ./scripts/migrate-drop.sh
+	. ./scripts/utils/migrate-drop.sh
 
 psql-start:
-	. ./scripts/psql_start.sh
+	. ./scripts/deploy/psql_start.sh
 
-in-psql:
-	. ./scripts/lookup-in-psql.sh
+look-psql:
+	. ./scripts/utils/lookup-in-psql.sh
 
 run-serv:
-	. ./scripts/run-serv.sh
+	. ./scripts/deploy/run-serv.sh
 
-autostart:
-ifeq ($(OS),Linux)
-	. ./scripts/autostart.sh
-else ifeq ($(OS),Darwin)
-	. ./scripts/autostart.sh
-else ifeq ($(OS),Windows_NT)
-	@powershell -ExecutionPolicy Bypass -File ./scripts/autostart.ps1
-endif
-	@$(MAKE) compose
 
 .PHONY: auto-start compose
