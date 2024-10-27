@@ -61,7 +61,7 @@ func main() {
 		log.Error("failed to init storage", slog.String("error", err.Error()))
 		os.Exit(1)
 	}
-	defer storage.Close()
+	// defer storage.Close()
 
 	repos := repo.NewRepository(storage)
 

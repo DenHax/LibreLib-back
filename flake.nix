@@ -76,7 +76,7 @@
                   ''
                     echo "Backend for LibreLib"
                     go version
-                    source .env
+                    source .env-compose
                   '';
 
                 enterTest = # bash
