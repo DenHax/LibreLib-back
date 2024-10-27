@@ -4,7 +4,7 @@ WORKDIR /usr/local/src
 
 RUN apk add --no-cache bash git make gcc gettext musl-dev 
 
-COPY ./go.mod .
+COPY ./go.mod ./go.sum .
 
 RUN go mod download
 
@@ -14,12 +14,12 @@ RUN go build -o ./bin/librelib ./cmd/librelib/main.go
 
 FROM alpine AS runner
 
-COPY --from=builder /usr/local/src/bin/librelib /
-
 RUN apk add --no-cache ca-certificates
 
 COPY ./configs/config.yaml /config.yaml
 
 ENV CONFIG_PATH  /config.yaml
+
+COPY --from=builder /usr/local/src/bin/librelib /
 
 CMD ["/librelib"]
