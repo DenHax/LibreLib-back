@@ -16,21 +16,17 @@ type Config struct {
 
 type ServerConfig struct {
 	Address      string        `yaml:"address" env-default:"localhost:8080"`
-	Port         string        `yaml:"port" env:"APP_PORT" env_default:"8080"`
 	SSLMode      string        `yaml:"ssl_mode" env-default:"disable"`
 	ReadTimeout  time.Duration `yaml:"read_timeout"`
 	WriteTimeout time.Duration `yaml:"write_timeout"`
-	AppVersion   string        `yaml:"app_version"`
+	// Port         string        `yaml:"port" env:"APP_PORT" env_default:"8080"`
+	// AppVersion   string        `yaml:"app_version"`
 }
 
 type Postgres struct {
-	URL      string `env:"POSTGRES_URL"`
-	Host     string `env:"POSTGRES_HOST"`
-	Port     string `env:"POSTGRES_PORT"`
-	User     string `env:"DB_USER"`
-	Password string `env:"POSTGRES_PASSWOWRD"`
-	Name     string `env:"DB_NAME"`
-	SSLMode  string `env:"ssl_mode"`
+	URL           string `env:"POSTGRES_URL"`
+	SSLMode       string `env:"SSL_MODE"`
+	MigrationPath string `yaml:"migration_path"`
 }
 
 type Logger struct {
